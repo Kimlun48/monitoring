@@ -11,8 +11,7 @@ scrape_configs:
   - job_name: "snmp"
     static_configs:
       - targets:
-          - 172.16.20.51 # SNMP Device 1
-          - 172.16.20.52 # SNMP Device 2
+          - 192.168.1.2 # SNMP Device 1
     metrics_path: /snmp
     params:
       module: [mikrotik]
@@ -23,3 +22,8 @@ scrape_configs:
         target_label: instance
       - target_label: __address__
         replacement: snmp_exporter:9116 # The SNMP exporter's real hostname:port.
+  
+
+  - job_name: 'node'
+    static_configs:
+      - targets: ['node-exporter:9100']
